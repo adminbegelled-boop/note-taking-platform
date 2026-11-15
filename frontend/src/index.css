@@ -1,0 +1,74 @@
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f9fa;
+  color: #222;
+}
+.container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+}
+nav button {
+  margin-right: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+button.active {
+  font-weight: bold;
+  background: #0066cc;
+  color: white;
+  border: 1px solid #0055aa;
+}
+input, textarea, select {
+  width: 100%;
+  padding: 8px;
+  margin: 6px 0 14px;
+  box-sizing: border-box;
+}
+.card {
+  border: 1px solid #e0e0e0;
+  padding: 12px;
+  margin-bottom: 12px;
+  background: #fafafa;
+  border-radius: 4px;
+}
+.badge {
+  display: inline-block;
+  padding: 2px 6px;
+  background: #e2e8f0;
+  border-radius: 3px;
+  font-size: 12px;
+  margin-right: 4px;
+}
+.admin-badge {
+  background: #fed7d7;
+  color: #9b2c2c;
+}
+.pagination {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 15px;
+}
+.error {
+  color: red;
+  margin-bottom: 10px;
+}
+.success {
+  color: green;
+  margin-bottom: 10px;
+}
+
