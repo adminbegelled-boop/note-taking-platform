@@ -1,4 +1,6 @@
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+require('dotenv').config({ path: path.resolve(__dirname, './.env') });
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -30,7 +32,6 @@ app.use('/api/users', userRoutes);
 app.use('/api/posts', postRoutes);
 app.use('/api/aggregations', aggregationRoutes);
 
-const path = require('path');
 const fs = require('fs');
 
 // Health check
@@ -40,9 +41,11 @@ app.get('/health', (_, res) => res.json({ status: 'ok', timestamp: new Date() })
 const frontendDist = path.join(__dirname, '../frontend/dist');
 if (fs.existsSync(frontendDist)) {
   app.use(express.static(frontendDist));
-  app.get('*', (req, res, next) => {
-    if (req.path.startsWith('/api') || req.path.startsWith('/health')) return next();
-    res.sendFile(path.join(frontendDist, 'index.html'));
+  app.use((req, res, next) => {
+    if (req.method === 'GET' && !req.path.startsWith('/api') && !req.path.startsWith('/health')) {
+      return res.sendFile(path.join(frontendDist, 'index.html'));
+    }
+    next();
   });
 }
 

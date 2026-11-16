@@ -5,15 +5,22 @@
   "scripts": {
     "test": "cd backend && node test-api.js",
     "seed": "cd backend && node seed.js",
-    "backend": "cd backend && npm start",
+    "install:all": "npm --prefix backend install && npm --prefix frontend install --include=dev",
+    "build": "npm run install:all && npm --prefix frontend run build",
+    "start": "node backend/server.js",
+    "backend": "cd backend && node server.js",
     "frontend": "cd frontend && npm start",
-    "build:frontend": "cd frontend && npm run build",
-    "build": "npm run install-all && cd frontend && npm run build",
-    "install-all": "npm --prefix backend install && npm --prefix frontend install",
-    "start": "cd backend && node server.js"
+    "dev": "npm run build && npm start"
   },
-  "keywords": ["express", "react", "mongodb", "aggregation", "indexing", "jwt", "rbac"],
+  "keywords": [
+    "express",
+    "react",
+    "mongodb",
+    "aggregation",
+    "indexing",
+    "jwt",
+    "rbac"
+  ],
   "author": "",
   "license": "ISC"
 }
-
