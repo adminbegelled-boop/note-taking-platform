@@ -1,6 +1,18 @@
-const BASE = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_API_URL)
-  ? import.meta.env.VITE_API_URL
-  : '/api';
+function getBaseUrl() {
+  if (typeof window !== 'undefined') {
+    const host = window.location.hostname;
+    const isLocal = host === 'localhost' || host === '127.0.0.1';
+    if (!isLocal) {
+      // On Render or any production deployment, always use relative '/api' on the same domain
+      return '/api';
+    }
+  }
+
+  const envUrl = typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_API_URL;
+  return envUrl || '/api';
+}
+
+const BASE = getBaseUrl();
 
 function getToken() {
   return localStorage.getItem('token');
